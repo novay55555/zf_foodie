@@ -1,0 +1,61 @@
+﻿
+//整体操作按钮样式
+.tools_bar
+{
+    height: 45px;
+    border-top: #ccc 1px solid;
+    border-bottom: #ccc 1px solid;
+    margin-bottom: 1px;
+    background: #F7F7F7;
+    padding-left: 2px;
+}
+.tools_bar .tools_btn
+{
+   /* cursor: pointer;*/
+    float: left;
+    display: block;
+    margin: 2px 2px 0;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 39px;
+    overflow: hidden;
+    border: 1px solid #F7F7F7;
+}
+.tools_bar .tools_btn:hover
+{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+.tools_bar .tools_btn span
+{
+    display: block;
+    background: none;
+}
+.tools_bar .tools_btn span b
+{
+    font-weight: normal;
+    display: block;
+    padding: 22px 0 5px;
+    line-height: 15px;
+}
+
+
+/*刷新*/
+.btn_tools_windowload
+{
+    background: url('../../Images/arrow_refresh.png') 50% 4px no-repeat;
+}
+/*新增*/
+.btn_tools_add
+{
+    background: url('../Images/add.png') 50% 4px no-repeat;
+}
+/*保存*/
+.btn_tools_save
+{
+    background: url('../Images/save_data.png') 50% 4px no-repeat;
+}

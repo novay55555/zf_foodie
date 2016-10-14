@@ -1,0 +1,14 @@
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieConnection\bin\Debug\FoodieConnection.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieConnection\bin\Debug\FoodieConnection.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieConnection\obj\Debug\FoodieConnection.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieConnection\obj\Debug\FoodieConnection.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieConnection\obj\Debug\FoodieConnection.csprojResolveAssemblyReference.cache
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieConnection\bin\Debug\FoodieParameters.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieConnection\bin\Debug\FoodieParameters.pdb
+E:\Pro_mine\zf_foodie\front_back\FoodieConnection\bin\Debug\FoodieConnection.dll
+E:\Pro_mine\zf_foodie\front_back\FoodieConnection\bin\Debug\FoodieConnection.pdb
+E:\Pro_mine\zf_foodie\front_back\FoodieConnection\bin\Debug\FoodieParameters.dll
+E:\Pro_mine\zf_foodie\front_back\FoodieConnection\bin\Debug\FoodieParameters.pdb
+E:\Pro_mine\zf_foodie\front_back\FoodieConnection\obj\Debug\FoodieConnection.csprojResolveAssemblyReference.cache
+E:\Pro_mine\zf_foodie\front_back\FoodieConnection\obj\Debug\FoodieConnection.dll
+E:\Pro_mine\zf_foodie\front_back\FoodieConnection\obj\Debug\FoodieConnection.pdb

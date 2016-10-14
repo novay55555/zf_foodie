@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Mine</title>
+    <link rel="stylesheet" href="../vendor/normalize.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+    <section class="mine">
+        <header>
+            我的清单
+            <span class="left"><a href="#" id="back">返回</a></span>
+        </header>
+        <div id="foodList"></div>
+    </section>
+    <script src="../vendor/jquery-2.1.3.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    var delArr = [];
+    document.addEventListener('plusready', plusReady, false);
+
+    function plusReady() {
+        MyApp.init();
+        $('#foodList')
+            // 渲染页面
+            .html(makeFoodList())
+            // 选择该清单进行roll
+            .on('click', '.title', function() {
+                var $list = $(this).closest('.list'),
+                    mylist = JSON.parse(localStorage.getItem('mylist')),
+                    listData = mylist[$list.data('index')].data,
+                    arr = listData.map(function(elem) {
+                        return '\'' + elem + '\'';
+                    });
+                plus.webview.getLaunchWebview().evalJS('eatingObj.reset([' + arr.join(',') + ']);$("#modal").click();');
+                MyApp.back('notReg');
+            })
+            // 编辑
+            .on('click', '.edit', function() {
+                var $this = $(this),
+                    $div = $this.parent('h3').siblings('div');
+                if ($div.hasClass('active')) {
+                    $div.removeClass('active').animate({
+                        height: 0
+                    }, 50);
+                } else {
+                    var $spans = $div.find('span'),
+                        $span = $($spans[0]),
+                        colSpanCounts = Math.ceil($spans.length / 3),
+                        divHeight = (parseFloat($span.css('line-height')) + parseFloat($span.css('margin-bottom'))) * colSpanCounts;
+                    $div.addClass('active').animate({
+                        height: divHeight
+                    }, 50);
+                }
+            })
+            // 删除清单
+            .on('click', '.del', function() {
+                var self = this;
+                plus.nativeUI.confirm('确认删除这个清单', function(e) {
+                    if (!e.index) {
+                        var mylist = JSON.parse(localStorage.getItem('mylist')),
+                            $list = $(this).closest('.list');
+                        mylist.splice($list.data('index'), 1);
+                        $list.remove();
+                        localStorage.setItem('mylist', JSON.stringify(mylist));
+                    }
+                }.bind(self), '删除?', ['YES', 'NO']);
+            })
+            // 删除清单的内容
+            .on('click', '.okey', function() {
+                var $this = $(this),
+                    $list = $this.closest('.list'),
+                    mylist = JSON.parse(localStorage.getItem('mylist')),
+                    listData = mylist[$list.data('index')].data,
+                    _listData = listData.map(function(elem) { // 复制副本, 回滚时用
+                        return elem;
+                    });
+                delArr.forEach(function(elem) {
+                    listData.splice(listData.indexOf(elem), 1);
+                });
+                if (listData.length < 4) { // 如果清单的内容少于4, 删除无效
+                    listData = _listData;
+                    return alert('每个清单必须存在至少4个条目喔~');
+                }
+                var htmlArr = listData.map(function(elem) {
+                    return '<span>' + elem + '</span>'
+                });
+                $list.children('div').html(htmlArr.join(''));
+                $this.hide();
+                delArr = [];
+                localStorage.setItem('mylist', JSON.stringify(mylist));
+            })
+            // 添加
+            .on('click', '.add', function() {
+                alert('开发ing...')
+            })
+            // 选择删除/取消删除
+            .on('click', '.list span', function() {
+                var $this = $(this);
+                if ($this.hasClass('selected')) {
+                    $this.removeClass('selected');
+                    delArr.splice(delArr.indexOf($this.text()), 1);
+                } else {
+                    $this.addClass('selected');
+                    delArr.push($this.text());
+                }
+                // 如果有选择, 才让相应删除的按钮显示
+                if ($this.parent().find('.selected').length > 0) {
+                    $this.closest('.list').find('.okey').show();
+                } else {
+                    $this.closest('.list').find('.okey').hide();
+                }
+            });
+    }
+
+    function makeFoodList() {
+        var mylist = JSON.parse(localStorage.getItem('mylist'));
+        if (mylist === null) {
+            return '<div class="none-data">尚未保存我的清单, 赶紧去"今天次神马"页面创建你第一个清单吧-. -</div>';
+        } else if (mylist.length) {
+            var htmlArr = mylist.map(function(elem, i) {
+                var s = '<div class="list" data-index="' + i + '">',
+                    s1 = '<div>';
+                s += '<h3><b class="title">' + elem.type + '</b><strong class="del">删除</strong><strong class="edit">编辑</strong><strong class="add">添加</strong><strong class="okey">确定</strong></h3>';
+                for (var i = 0, l = elem.data.length; i < l; i++) {
+                    s1 += '<span>' + elem.data[i] + '</span>';
+                }
+                s1 += '</div>'
+                s += s1 + '</div>';
+                return s;
+            });
+            return htmlArr.join('');
+        } else {
+            return '<div class="none-data">尚未保存我的清单, 赶紧去"今天次神马"页面创建你第一个清单吧-. -</div>';
+        }
+    }
+    </script>
+</body>
+
+</html>

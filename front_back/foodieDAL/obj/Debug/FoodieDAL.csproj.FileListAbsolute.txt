@@ -1,0 +1,26 @@
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\foodieDAL.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\foodieDAL.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\obj\Debug\FoodieDAL.csprojResolveAssemblyReference.cache
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\obj\Debug\foodieDAL.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\obj\Debug\foodieDAL.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\FoodieConnection.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\FoodieParameters.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\MySql.Data.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\FoodieConnection.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\FoodieParameters.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\FoodieEntity.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\foodieDAL\bin\Debug\FoodieEntity.pdb
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\foodieDAL.dll
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\foodieDAL.pdb
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\FoodieConnection.dll
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\FoodieEntity.dll
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\FoodieParameters.dll
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\MySql.Data.dll
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\FoodieConnection.pdb
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\FoodieEntity.pdb
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\bin\Debug\FoodieParameters.pdb
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\obj\Debug\FoodieDAL.csprojResolveAssemblyReference.cache
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\obj\Debug\foodieDAL.dll
+E:\Pro_mine\zf_foodie\front_back\foodieDAL\obj\Debug\foodieDAL.pdb

@@ -1,0 +1,4 @@
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieParameters\bin\Debug\FoodieParameters.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieParameters\bin\Debug\FoodieParameters.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieParameters\obj\Debug\FoodieParameters.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieParameters\obj\Debug\FoodieParameters.pdb

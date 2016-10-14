@@ -1,0 +1,46 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../Scripts/jquery-easyui-1.5/jquery.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-easyui-1.5/jquery.easyui.min.js" type="text/javascript"></script>
+    <link href="../../Scripts/jquery-easyui-1.5/themes/bootstrap/easyui.css" rel="stylesheet"
+          type="text/css" />
+    <link href="../../Scripts/jquery-easyui-1.5/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <link href="../../Styles/ZF_Foodie.css" rel="stylesheet" type="text/css" />
+    <script src="../../AjaxJson.js"></script>
+    <script src="js/EatSystemUserInfo.js"></script>
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north',border:false" style="height: 46px">
+        <div class="tools_bar" style="border-top: none; margin-bottom: 0px;">
+            <div class="">
+                <a onclick="btn_refresh()" class="tools_btn">
+                    <span>
+                        <b title="刷新" style="background: url(../../Images/arrow_refresh.png) 50% 4px no-repeat;">
+                            刷新
+                        </b>
+                    </span>
+                </a>
+                <div class="tools_separator">
+                </div>
+                <a onclick="btn_add()" class="tools_btn">
+                    <span>
+                        <b title="新增" class="btn_tools_add">新增</b>
+                    </span>
+                </a><a onclick="btn_save()" class="tools_btn">
+                    <span>
+                        <b title="保存" class="btn_tools_save">
+                            保存
+                        </b>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center'" style="border-top: none">
+        <table id="EatSystemUserInfoTable" data-options="border:false"></table>
+    </div>
+</body>
+</html>

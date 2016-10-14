@@ -1,0 +1,4 @@
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieEntity\bin\Debug\FoodieEntity.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieEntity\bin\Debug\FoodieEntity.pdb
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieEntity\obj\Debug\FoodieEntity.dll
+C:\Users\ThinkPad\Documents\Visual Studio 2010\Projects\WebSite9\FoodieEntity\obj\Debug\FoodieEntity.pdb

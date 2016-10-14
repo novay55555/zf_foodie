@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Contribute</title>
+    <link rel="stylesheet" href="../vendor/normalize.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+    <article class="contribute">
+        <header>
+            Contribute to us
+            <span class="left"><a href="#" id="back">返回</a></span>
+        </header>
+        <h3 class="intro">Hello, world! 小伙伴们可以通过以下方式为我们贡献数据;)</h3>
+        <section class="database">
+            <h5>方式一: 为我们的数据类型增添一笔</h5>
+            <div class="list"></div>
+            <div class="control">
+                <input type="text" placeholder="输入你要贡献的条目数量" maxlength="2" />
+                <button>确定</button>
+            </div>
+            <div class="group"></div>
+            <a href="#" id="way1">提交</a>
+        </section>
+        <section class="new">
+            <h5>方式二: 创造新的数据!</h5>
+            <div class="type">
+                <input type="text" placeholder="输入你要添加的类型" />
+            </div>
+            <div class="control">
+                <input type="text" placeholder="输入你要贡献的条目数量" maxlength="2" />
+                <button>确定</button>
+            </div>
+            <div class="group"></div>
+            <a href="#" id="way2">提交</a>
+        </section>
+    </article>
+    <script src="../vendor/jquery-2.1.3.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    document.addEventListener('plusready', plusReady, false);
+
+    function plusReady() {
+        MyApp.init();
+        var database = JSON.parse(localStorage.getItem('database'));
+
+        $('.list')
+            .html(makeTypeList(database))
+            .on('click', 'span', function() {
+                $(this).addClass('selected').siblings('span').removeClass('selected');
+            });
+
+        // 新增输入条目
+        $('.control button').on('click', function() {
+            var $this = $(this),
+                value = $this.siblings('input').val();
+            if (value) {
+                if(value === '0') return alert('请输入大于0的整数~');
+                if (value > 20) return alert('一次最多贡献20条喔~')
+                $this.parent('.control').siblings('.group').html(makeListInput(value));
+            } else {
+                alert('请输入你想要增添的数目');
+            }
+        });
+        // 输入条目数目
+        $('.control input').on('input', function() {
+            var $this = $(this),
+                value = $this.val();
+            if (!/^\d+$/.test(value)) $this.val('');
+        });
+        // 删除某条条目
+        $('.group').on('click', '.del', function() {
+            $(this).parent('p').remove();
+        });
+        // 方式一提交
+        $('#way1').on('click', function(e) {
+            e.preventDefault();
+            var $this = $(this),
+                $inputArr = $this.siblings('.group').find('input'),
+                $typeSelect = $this.siblings('.list').children('.selected'),
+                r = [];
+            if (!$typeSelect.length) return alert('请选择一个类型');
+            if ($inputArr.length > 0) {
+                $inputArr.each(function(index, elem) {
+                    if ($.trim(elem.value)) r.push(elem.value);
+                });
+            }
+            if (r.length > 0) {
+                var waiting = plus.nativeUI.showWaiting('now uploading...'),
+                    type = $typeSelect.text(),
+                    currentTypeData;
+                for (var i = 0, l = database.length; i < l; i++) {
+                    if (database[i].type === type) {
+                        currentTypeData = database[i].data;
+                        break;
+                    }
+                }
+                r.forEach(function(elem) {
+                    if (currentTypeData.indexOf(elem) === -1) currentTypeData.push(elem);
+                });
+                localStorage.setItem('database', JSON.stringify(database));
+                setTimeout(function() {
+                    $inputArr.parent().remove();
+                    $this.closest('section').find('input').val('');
+                    $typeSelect.removeClass('selected');
+                    waiting.close();
+                    plus.nativeUI.toast('添加成功');
+                }, 2000)
+            } else {
+                alert('请至少填写一个条目');
+            }
+        });
+        // 方式二提交
+        $('#way2').on('click', function(e) {
+            e.preventDefault();
+            var $this = $(this),
+                $inputArr = $this.siblings('.group').find('input'),
+                typeInput = $.trim($this.siblings('.type').children('input').val()),
+                r = [];
+            if (!typeInput) return alert('请输入一个类型');
+            if ($inputArr.length > 0) {
+                $inputArr.each(function(index, elem) {
+                    if ($.trim(elem.value)) r.push(elem.value);
+                });
+            }
+            if (r.length > 0) {
+                var waiting = plus.nativeUI.showWaiting('now uploading...');
+                for (var i = 0, l = database.length; i < l; i++) {
+                    if (typeInput === database[i].type) { // 如果输入的类型已在数据库中
+                        var currentTypeData = database[i].data;
+                        r.forEach(function(elem) {
+                            if (currentTypeData.indexOf(elem) === -1) currentTypeData.push(elem);
+                        });
+                        break;
+                    } else {
+                        var newData = {
+                            type: typeInput,
+                            data: r
+                        };
+                        database.push(newData);
+                        break;
+                    }
+                }
+                localStorage.setItem('database', JSON.stringify(database));
+                setTimeout(function() {
+                    $inputArr.parent().remove();
+                    $this.closest('section').find('input').val('');
+                    waiting.close();
+                    plus.nativeUI.toast('添加成功');
+                }, 2000)
+            } else {
+                alert('请至少填写一个条目');
+            }
+        });
+    }
+
+
+    function makeListInput(number) {
+        var r = [];
+        for (var i = 0; i < number; i++) {
+            r.push('<p>\r<input type="text" placeholder="输入你要贡献的条目" />\r<strong class="del">X</strong>\r</p>\r');
+        }
+        return r.join('');
+    }
+
+    function makeTypeList(data) {
+        types = data.map(function(elem) {
+            return '<span>' + elem.type + '</span>';
+        });
+        return types.join('');
+    }
+    </script>
+</body>
+
+</html>
