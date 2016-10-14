@@ -44,15 +44,6 @@
 7. 使用Hbuilder编辑器打开`front_end`项目(如有需要, 需要项目`右键`-->`转换成移动app`), USB连接手机后, 快捷键`ctrl` + `r`使用手机调试
 
 8. JUST HF! :)
-<<<<<<< HEAD
-## 配置IIS遇到的二三坑
-	提示无法执行ASP.NET
-以管理员的身份运行CMD, 执行如下指令`%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe -i`, 重新安装
-![enter image description here](http://ww2.sinaimg.cn/large/6b7ebbf5gw1f8ru0687zzj20u103kab6.jpg)	
-这类`Temporary ASP.NET files`的问题, 主要是因为windows内部的权限问题, 需要对`C:\Windows\temp`和`C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files`这两个目录增加`IIS_IUSRS`和`NETWORK SERVICE`这两个对象, 并且给这两个对象**全权控制**
-
-参考文章: [猛戳我一下](http://www.tugberkugurlu.com/archive/local-iis-7-0-cs0016--could-not-write-to-output-file-microsoft-net-framework-v4-0-30319-temporary-asp-net-files)
-=======
 
 ## 配置IIS遇到的二三坑
 我的操作系统的win 7, 据有关专业的童鞋说, 不同的windows系统配置**IIS**遇到的坑不一样, 我先记录我自己遇到的坑
@@ -65,4 +56,3 @@
 这类`Temporary ASP.NET files`的问题, 主要是因为windows内部的权限问题, 需要对`C:\Windows\temp`和`C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files`这两个目录增加`IIS_IUSRS`和`NETWORK SERVICE`这两个对象, 并且给这两个对象**全权控制**
 
 参考文章: [猛戳我一下](http://www.tugberkugurlu.com/archive/local-iis-7-0-cs0016--could-not-write-to-output-file-microsoft-net-framework-v4-0-30319-temporary-asp-net-files)
->>>>>>> 148a75e9640a2e2596a1cb907f19e50a7f862e53
