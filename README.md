@@ -19,7 +19,7 @@
 
 2. 导入数据库, 数据库文件在`/front_back/zf_foodie.sql`
 
-3. 增加`mysql`连接配置, 在`/front_back/WebUI/XmlConfig`下新建一个`Config.xml`文件, 写入如下代码, 注意修改`key`为`MySQl_Foodie`的`value`值, 根据自身开发的`mysql`环境填写**用户名**, **密码**, **数据库名**
+3. 增加`mysql`连接配置, 在`/front_back/WebUI/`下新建一个'XmlConfig'的文件夹, 并在该文件夹下新建一个`Config.xml`文件, 写入如下代码, 注意修改`key`为`MySQl_Foodie`的`value`值, 根据自身开发的`mysql`环境填写**用户名**, **密码**, **数据库名**
   ```xml
   <?xml version="1.0" encoding="utf-8" ?>
   <appSettings>
@@ -35,7 +35,7 @@
   </appSettings>
   ``` 
 
-4. 配置**IIS**服务器, 并把`/front_back/WebUI/`作为站点发布到**IIS**上(这个过程很坑爹, 无法用言语表达), 如果你成功配置了, 在浏览器以`IP`+`端口`的形式访问出现**弹窗1**, `Congratulations!!!!!`
+4. 配置**IIS**服务器, 并把`/front_back/WebUI/`作为站点发布到**IIS**上(**这个过程很坑爹, 无法用言语表达**), 如果你成功配置了, 在浏览器以`IP`+`端口`的形式访问出现**弹窗1**, `Congratulations!!!!!`[配置参考文章](http://ons.me/147.html)
 
 5. 以**管理员的身份**开启你的重量级选手**Visual Studio201x**, 打开`front_back`项目, 按`F5`启动项目
 
