@@ -15,7 +15,7 @@
             我的清单
             <span class="left"><a href="#" id="back">返回</a></span>
         </header>
-        <div id="foodList"></div>
+        <div class="foodList" id="foodList"></div>
     </section>
     <script src="../vendor/jquery-2.1.3.min.js"></script>
     <script src="../js/main.js"></script>
@@ -44,17 +44,13 @@
                 var $this = $(this),
                     $div = $this.parent('h3').siblings('div');
                 if ($div.hasClass('active')) {
-                    $div.removeClass('active').animate({
-                        height: 0
-                    }, 50);
+                    $div.removeClass('active').height(0);
                 } else {
                     var $spans = $div.find('span'),
                         $span = $($spans[0]),
                         colSpanCounts = Math.ceil($spans.length / 3),
                         divHeight = (parseFloat($span.css('line-height')) + parseFloat($span.css('margin-bottom'))) * colSpanCounts;
-                    $div.addClass('active').animate({
-                        height: divHeight
-                    }, 50);
+                    $div.addClass('active').height(divHeight);
                 }
             })
             // 删除清单

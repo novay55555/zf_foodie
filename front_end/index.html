@@ -39,12 +39,12 @@ body {
             <span class="right"><a href="#" id="menu">菜单</a></span>
         </header>
         <div id="eating">
-            <h1>Something need to EAT?</h1>
+            <h1>Something needs to EAT?</h1>
             <div id="eatingBox">
             </div>
             <div class="btn-group">
-                <button class="left" id="chooseToEat">Choose to EAT!</button>
-                <button class="right" id="feelingLucky">Feeling lucky!</button>
+                <button class="mui-btn mui-btn-royal left" id="chooseToEat">Choose to EAT!</button>
+                <button class="mui-btn mui-btn-success right" id="feelingLucky">Feeling lucky!</button>
             </div>
         </div>
     </section>
@@ -104,7 +104,7 @@ body {
             $('#aside').removeClass('active');
             setTimeout(function() {
                 this.style.display = 'none';
-            }.bind(this), 300)
+            }.bind(this), 300);
         });
 
         // 侧栏功能
@@ -118,6 +118,7 @@ body {
         });
 
         plus.key.addEventListener('backbutton', back, false);
+        
         // 为了显示咸鱼里的妹子, 我也是煞费苦心了... ;)
         setTimeout(function() {
             $('#unclickabledModal').fadeOut('200', function() {
@@ -135,7 +136,10 @@ body {
             currentWebview = plus.webview.currentWebview();
 
         if ($aside.hasClass('active')) {
-            $aside.removeClass('active').siblings('#modal').hide();
+            $('#aside').removeClass('active');
+            setTimeout(function() {
+                document.getElementById('modal').style.display = 'none';
+            }, 300);
         } else {
             clickTime++ % 2 === 1 ? currentWebview.close() : plus.nativeUI.toast('再次点击关闭应用:)');
             setTimeout(function() {

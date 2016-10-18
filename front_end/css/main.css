@@ -9,6 +9,7 @@
 
 body {
     font-size: 0.45rem;
+    background-color: #f9f9f9;
 }
 
 a {
@@ -28,11 +29,13 @@ button {
 
 header {
     position: relative;
+    margin-bottom: 0.375rem;
     font-size: 0.5rem;
     line-height: 1.25rem;
     text-align: center;
     font-weight: bold;
-    background-color: #dddddd;
+    background-color: #fff;
+    box-shadow: 0 0 0.25rem #dedede;
 }
 
 header .left {
@@ -70,26 +73,9 @@ header a {
 
 /* 首页 */
 
-#eating {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
 #eating h1 {
     font-size: 0.55rem;
     text-align: center;
-}
-
-#eating button {
-    width: 3.2rem;
-    line-height: 0.9rem;
-    font-size: 0.4rem;
-    color: #fff;
-    border-radius: 10px;
-    border: 1px solid transparent;
 }
 
 #eating .btn-group {
@@ -97,21 +83,27 @@ header a {
     padding: 0 0.375rem;
 }
 
+#eating .btn-group:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+
 #eating .btn-group .left {
     float: left;
-    background-color: purple;
-    border-color: purple;
 }
 
 #eating .btn-group .right {
     float: right;
-    background-color: green;
-    border-color: green;
 }
 
 #eatingBox {
     position: relative;
     margin: 0 auto;
+    min-height: 8.0rem;
 }
 
 #eatingBox span {
@@ -127,7 +119,7 @@ header a {
 }
 
 #eatingBox span.active {
-    color: green;
+    color: #4cd964;
     background-color: yellow;
 }
 
@@ -174,20 +166,25 @@ header a {
 
 /* 今天次神马 */
 
-.eating #foodList {
-    margin-top: 0.375rem;
+.eating .foodList {
     margin-bottom: 1.25rem;
 }
 
-.eating .list>h3 {
-    background-color: #eeeeee;
-    line-height: 1.0rem;
+.eating .list {
+    background-color: #fff;
     margin-bottom: 0.375rem;
+}
+
+.eating .list>h3 {
+    padding-left: 0.25rem;
+    font-size: 0.45rem;
+    line-height: 1.0rem;
+    margin-bottom: 0.25rem;
 }
 
 .eating .list>h3.active {
     color: #fff;
-    background-color: green;
+    background-color: #007aff;
 }
 
 .eating .list>div {
@@ -225,7 +222,7 @@ header a {
 }
 
 .eating .list span.selected {
-    background-color: green;
+    background-color: #4cd964;
     color: #fff;
 }
 
@@ -234,39 +231,41 @@ header a {
     bottom: 0;
     left: 0;
     width: 100%;
-    font-size: 0;
+}
+
+.eating .btn-group:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clear: both;
 }
 
 .eating .btn-group button {
+    float: left;
     width: 4.0rem;
-    border: 1px solid transparent;
-    line-height: 1.0rem;
     font-size: 0.45rem;
-    color: #fff;
-}
-
-.eating #save {
-    background-color: green;
-    border-color: green;
-}
-
-.eating #roll {
-    background-color: blue;
-    border-color: blue;
+    border-radius: 0;
 }
 
 
 /* 我的清单 */
 
-.mine #foodList {
-    margin-top: 0.375rem;
+.mine .foodList {
     margin-bottom: 1.25rem;
 }
 
-.mine .list>h3 {
-    background-color: #eeeeee;
-    line-height: 1.0rem;
+.mine .list {
+    background-color: #fff;
     margin-bottom: 0.375rem;
+}
+
+.mine .list>h3 {
+    padding-left: 0.25rem;
+    font-size: 0.4rem;
+    line-height: 1.0rem;
+    margin-bottom: 0.25rem;
 }
 
 .mine .list>h3:after {
@@ -293,11 +292,11 @@ header a {
 }
 
 .mine .edit {
-    color: blue;
+    color: #007aff;
 }
 
 .mine .add {
-    color: green;
+    color: #4cd964;
 }
 
 .mine .list>h3 strong.okey {
@@ -396,7 +395,7 @@ header a {
 
 .contribute .list .selected {
     color: #fff;
-    background-color: green;
+    background-color: #4cd964;
 }
 
 .contribute .list span:nth-child(3n + 2) {
@@ -425,43 +424,48 @@ header a {
     color: #fff;
 }
 
-.contribute #way1,
-.contribute #way2 {
+.contribute section>a {
     margin: 0.25rem auto 0.25rem;
     display: block;
     width: 2.0rem;
     font-size: 0.35rem;
     line-height: 0.75rem;
     color: #fff;
-    background-color: green;
+    background-color: #4cd964;
     border-radius: 10px;
     text-align: center;
 }
 
+
 /* 登录 */
-.login .form{
+
+.login .form {
     position: fixed;
     top: 50%;
     left: 0;
     -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    transform: translateY(-50%);
     width: 100%;
     text-align: center;
 }
-.login .form p{
+
+.login .form p {
     margin: 0.25rem 0;
 }
-.login .form label{
+
+.login .form label {
     line-height: 0.875rem;
 }
-.login .form input{
+
+.login .form input {
     padding: 0.05rem 0.3rem;
     width: 5.0rem;
     height: 0.875rem;
     border: 0.025rem solid #dedede;
     border-radius: 0.25rem;
 }
-.login .form button{
+
+.login .form button {
     width: 1.5rem;
     height: 0.75rem;
     background-color: #fff;
@@ -469,10 +473,12 @@ header a {
     font-size: 0.35rem;
     border-radius: 0.25rem;
 }
-.login .form button:active{
+
+.login .form button:active {
     color: #fff;
-    background-color: green;
+    background-color: #4cd964;
 }
+
 
 /* 测试, 没什么卵用 */
 
