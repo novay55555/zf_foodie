@@ -18,6 +18,9 @@
         <div id="test">展示个人信息, 并且可以编辑,
             <button>测试登出</button>
         </div>
+        <div id="styleChange">
+            <button>转换选择效果</button>
+        </div>
     </section>
     <script src="../vendor/jquery-2.1.3.min.js"></script>
     <script src="../js/main.js"></script>
@@ -49,6 +52,13 @@
                     }
                 }
             MyApp.ajax.get(url, data, callback);
+        });
+        // TODO: 转换选择效果
+        $('#styleChange button').on('click', function () {
+            plus.webview.getLaunchWebview().evalJS('eatingObj.startIndex !== undefined ? eatingObj = new FoodieCircle(eatingObj.dom, eatingObj.data) : eatingObj = new Foodie(eatingObj.dom, eatingObj.data); $("#modal").click();')
+           setTimeout(function () {
+                MyApp.back('notReg');
+           }, 200);
         });
     }
     </script>

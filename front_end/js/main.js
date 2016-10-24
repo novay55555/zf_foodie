@@ -88,7 +88,7 @@
 
     // ajax相关
     MyApp.ajax = {
-        baseURL: 'http://192.168.1.122:19998',   // 根据环境不同自行定义
+        baseURL: 'http://192.168.1.122:19998', // 根据环境不同自行定义
         /**
          * GET方法
          * @param  {String} url         请求路径
@@ -120,8 +120,8 @@
                 }
             });
         },
-        post: function () {
-            
+        post: function() {
+
         }
     };
 
@@ -142,28 +142,29 @@
  * 吃货类
  * @param {Object}  dom  生成吃货的容器
  * @param {Array}   data 吃货条目
- * @param {Number}  line 容器行数
+ * @param {Array} duration roll效果随机的毫秒数
  */
-function Foodie(dom, data, line) {
+function Foodie(dom, data, duration) {
+    this.dom = dom;
     this.data = data;
     this.domItem = null; // 吃货条目生成的dom节点
     this.timer = null; // roll计时器
-    this.duration = [1, 2, 3, 4, 5]; // roll效果随机秒
+    this.duration = duration || [1000, 2000, 3000, 4000, 5000]; // roll效果随机秒
     this.startIndex = 1; // 从哪个dom节点开始roll效果
-    this.init(dom, line);
+    this.init();
 }
 /**
  * 初始化吃货
- * @param  {Object} dom  生成吃货的容器
- * @param  {Number} line 容器行数
  */
-Foodie.prototype.init = function(dom, line) {
-    var eatingFilter = [],
+Foodie.prototype.init = function() {
+    var data = this.data,
+        line = Math.floor((data.length + 4) / 4) > 5 ? 5 : Math.floor((data.length + 4) / 4),
+        eatingFilter = [],
         filterLength = (line - 1) * 4,
         eatingBoxHtml = '',
         width = document.documentElement.clientWidth,
         perRem = width / (40 * (width / 320)) / line,
-        filterArr = this.data.map(function(elem) {
+        filterArr = data.map(function(elem) {
             return elem;
         });
     for (var i = 0, arr = filterArr; i < filterLength; i++) {
@@ -178,33 +179,33 @@ Foodie.prototype.init = function(dom, line) {
             eatingBoxHtml += '<span style="left:0;top:' + (perRem * (filterLength - i) + 'rem;') + this.spanStyleStr(perRem) + '">' + eatingElem + '</span>';
         }
     }
-    dom.style.width = dom.style.height = minDocumentLength() + 'px';
-    dom.innerHTML = eatingBoxHtml;
-    this.domItem = dom.querySelectorAll('span');
+    this.dom.innerHTML = eatingBoxHtml;
+    this.domItem = this.dom.querySelectorAll('span');
 };
 /**
  * 随机选取一种吃货喜欢的东西
- * @param  {Number} duration 效果动画持续的毫秒数
  * @param  {Fuction} callback 效果结束后回调函数
  */
-Foodie.prototype.start = function(duration, callback) {
+Foodie.prototype.start = function(callback) {
     var timer = this.timer,
         eatingItem = this.domItem,
         index = this.startIndex,
-        effectTime = duration || this.duration[Math.floor(Math.random() * this.duration.length)] * 1000,
+        activeIndex,
+        effectTime = this.duration[Math.floor(Math.random() * this.duration.length)],
         startTime = new Date().getTime();
-    if (timer) clearInterval(timer);
     timer = setInterval(function() {
         if (new Date().getTime() - startTime > effectTime) {
             clearInterval(timer);
-            return callback && callback();
+            return callback && callback(eatingItem[activeIndex].textContent);
         }
         if (index === 1) {
-            eatingItem[index++ - 1].className = 'active';
+            activeIndex = index++ - 1;
+            eatingItem[activeIndex].className = 'active';
             eatingItem[eatingItem.length - 1].className = '';
         } else {
             eatingItem[index - 2].className = '';
-            eatingItem[index - 1].className = 'active';
+            activeIndex = index - 1;
+            eatingItem[activeIndex].className = 'active';
             index >= eatingItem.length ? index = 1 : index++;
         }
         this.startIndex = index; // 储存当前roll到的位置
@@ -215,20 +216,16 @@ Foodie.prototype.start = function(duration, callback) {
  * @param {Array} data 食物数组
  */
 Foodie.prototype.reset = function(data) {
-    var domParent = this.domItem[0].parentNode,
-        line = Math.floor((data.length + 4) / 4) > 5 ? 5 : Math.floor((data.length + 4) / 4);
     this.data = data;
     this.startIndex = 1;
-    this.init(domParent, line);
+    this.init();
 };
 
 /**
  * 打乱吃货roll的排列顺序
  */
 Foodie.prototype.reorder = function() {
-    var domParent = this.domItem[0].parentNode,
-        line = (this.domItem.length + 4) / 4;
-    this.init(domParent, line);
+    this.init();
 };
 
 /**
@@ -242,10 +239,102 @@ Foodie.prototype.spanStyleStr = function(rem) {
     });
     return r.join('');
 };
-
-function minDocumentLength() {
-    return Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight)
+/**
+ * 旋转吃货类
+ * @param {Object}  dom  生成吃货的容器
+ * @param {Array}   data 吃货条目
+ * @param {Number} duration roll效果随机的毫秒数
+ */
+function FoodieCircle(dom, data, duration) {
+    this.dom = dom;
+    this.data = data;
+    this.domItem = null;
+    this.duration = duration || 5000;
+    this.timer = null;
+    this.init();
 }
+/**
+ * 初始化吃货
+ */
+FoodieCircle.prototype.init = function() {
+    var eatingBoxHtml = '<p>click to roll!</p><div id="textBox"></div><div id="circle"></div>',
+        textBoxDistance;
+    this.dom.innerHTML = eatingBoxHtml;
+    this.domItem = {
+        title: this.dom.querySelector('p'),
+        textBox: this.dom.querySelector('#textBox'),
+        circle: this.dom.querySelector('#circle')
+    };
+    textBoxDistance = Math.round((this.domItem.circle.clientWidth * (1 - Math.sin(Math.PI / 180 * 45))) / 2);
+    ['top', 'left', 'bottom', 'right'].forEach(function(elem) {
+        textBox.style[elem] = textBoxDistance + 'px';
+    });
+    this.domItem.textBox.addEventListener('animationend', function(e) {
+        var elem = e.target;
+        if (elem.tagName.toLowerCase() === 'span') {
+            if (elem.parentNode.children.length === 1) this.domItem.title.style.display = 'block'; // 最后一个元素动画停止后, 才显示提示
+            elem.remove();
+        }
+    }.bind(this));
+    this.domItem.textBox.addEventListener('webkitAnimationEnd', function(e) {
+        var elem = e.target;
+        if (elem.tagName.toLowerCase() === 'span') {
+            if (elem.parentNode.children.length === 1) this.domItem.title.style.display = 'block'; // 最后一个元素动画停止后, 才显示提示
+            elem.remove();
+        }
+    }.bind(this));
+};
+/**
+ * 随机选取一种吃货喜欢的东西
+ * @param  {Fuction} callback 效果结束后回调函数
+ */
+FoodieCircle.prototype.start = function(callback) {
+    var textTimer = this.timer,
+        textBox = this.domItem.textBox,
+        lastItem,
+        startTime = new Date().getTime();
+    if (textTimer) clearInterval(textTimer);
+    this.domItem.title.style.display = 'none';
+    this.domItem.circle.className = 'rolled';
+    textTimer = setInterval(function() {
+        if (new Date().getTime() - startTime > this.duration) {
+            clearInterval(textTimer);
+            this.domItem.circle.className = '';
+            return callback && callback(lastItem);
+        }
+        var item = document.createElement('span'),
+            textBoxWidth = textBox.clientWidth,
+            randomTop = Math.ceil(textBoxWidth * Math.random()),
+            randomLeft = Math.ceil(textBoxWidth * Math.random());
+            lastItem = this.data[Math.floor(Math.random() * this.data.length)]
+        item.textContent = lastItem;
+        item.style.top = randomTop + 'px';
+        item.style.left = randomLeft + 'px';
+        textBox.appendChild(item);
+        // 保持文本在父级节点的范围内, 防止显示溢出
+        if (randomTop <= textBoxWidth && randomTop >= textBoxWidth - item.clientWidth) {
+            item.style.top = textBoxWidth - item.clientWidth + 'px';
+        }
+        if (randomLeft <= textBoxWidth && randomLeft >= textBoxWidth - item.clientWidth) {
+            item.style.left = textBox.clientWidth - item.clientWidth + 'px';
+        }
+    }.bind(this), 1 / 3 * 1000); // 文本的动画效果为1s, 可通过除数控制最多出现的文本数
+};
+/**
+ * 重新设置一个吃货roll
+ * @param {Array} data 食物数组
+ */
+FoodieCircle.prototype.reset = function(data) {
+    this.data = data;
+    this.init();
+}
+/**
+ * 打乱吃货roll的排列顺序(用户看不到, 其实没什么用)
+ */
+FoodieCircle.prototype.reorder = function() {
+
+}
+
 
 
 // FaskClick

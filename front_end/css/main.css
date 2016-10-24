@@ -66,7 +66,7 @@ header a {
     display: none;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 9;
     background-color: rgba(0, 0, 0, .5);
 }
 
@@ -106,7 +106,7 @@ header a {
     min-height: 8.0rem;
 }
 
-#eatingBox span {
+#eatingBox>span {
     position: absolute;
     display: inline-block;
     font-size: 0.3rem;
@@ -118,9 +118,59 @@ header a {
     background-color: black;
 }
 
-#eatingBox span.active {
+#eatingBox>span.active {
     color: #4cd964;
     background-color: yellow;
+}
+
+#eatingBox #circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: -webkit-linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+    background: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+    z-index: 1;
+    opacity: .6;
+}
+
+#eatingBox #circle.rolled {
+    animation: rotate 0.5s linear infinite both;
+    -webkit-animation: rotate 0.5s linear infinite both;
+}
+
+#eatingBox>p {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+    -webkit-animation: flicker 1s ease-in 0s infinite;
+    animation: flicker 1s ease-in 0s infinite;
+    z-index: 2;
+}
+
+#eatingBox #textBox {
+    position: absolute;
+    z-index: 2;
+}
+
+#eatingBox #textBox span {
+    display: inline-block;
+    position: absolute;
+    color: #fff;
+    font-size: 0.45rem;
+    text-align: center;
+    -webkit-animation: scale 1s ease-in 0s 1;
+    animation: scale 1s ease-in 0s 1;
+    z-index: 2;
+    white-space: nowrap;
 }
 
 #aside {
@@ -477,6 +527,76 @@ header a {
 .login .form button:active {
     color: #fff;
     background-color: #4cd964;
+}
+
+
+/* 次货转盘的动画 */
+@-webkit-keyframes flicker {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes scale {
+    0% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@keyframes scale {
+    0% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        -webkit-transform: rotate3d(0, 0, 1, 0);
+        transform: rotate3d(0, 0, 1, 0);
+    }
+    100% {
+        -webkit-transform: rotate3d(0, 0, 1, 360deg);
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate3d(0, 0, 1, 0);
+        transform: rotate3d(0, 0, 1, 0);
+    }
+    100% {
+        -webkit-transform: rotate3d(0, 0, 1, 360deg);
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
 }
 
 

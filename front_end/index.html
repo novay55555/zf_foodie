@@ -40,8 +40,7 @@ body {
         </header>
         <div id="eating">
             <h1>Something needs to EAT?</h1>
-            <div id="eatingBox">
-            </div>
+            <div id="eatingBox"></div>
             <div class="btn-group">
                 <button class="mui-btn mui-btn-royal left" id="chooseToEat">Choose to EAT!</button>
                 <button class="mui-btn mui-btn-success right" id="feelingLucky">Feeling lucky!</button>
@@ -80,13 +79,12 @@ body {
 
         // TODO: 数据初始化, 用的是飞龙龙给的字符串
         var eatingItem = '绿色尸体 血色骷髅 妖怪 魔鬼 巫婆 僵尸 鬼 白雪公主 七个小矮人 人鱼公主 长发公主 萝卜 玉玉 艾酱'.split(' ');
-
-        eatingObj = new Foodie(eatingBox, eatingItem, 4);
+        eatingObj = new Foodie(document.getElementById('eatingBox'), eatingItem);
 
         // 吃货开始roll啦
         $('#chooseToEat').on('click', function() {
             $('#unclickabledModal').show();
-            eatingObj.start(null, confirmToSelect);
+            eatingObj.start(confirmToSelect);
         });
 
         // 换一组
@@ -118,7 +116,7 @@ body {
         });
 
         plus.key.addEventListener('backbutton', back, false);
-        
+
         // 为了显示咸鱼里的妹子, 我也是煞费苦心了... ;)
         setTimeout(function() {
             $('#unclickabledModal').fadeOut('200', function() {
@@ -148,13 +146,12 @@ body {
         }
     }
 
-    function confirmToSelect() {
-        var selectedFood = document.querySelector('#eatingBox .active').innerHTML,
-            unclickabledModal = document.querySelector('#unclickabledModal'),
+    function confirmToSelect(selectedFood) {
+        var unclickabledModal = document.querySelector('#unclickabledModal'),
             fn = function(e) {
                 if (e.index) {
                     unclickabledModal.style.display = 'block';
-                    eatingObj.start(null, confirmToSelect);
+                    eatingObj.start(confirmToSelect);
                 } else {
                     // 以后推荐哪里可以次?
                 }

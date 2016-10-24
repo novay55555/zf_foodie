@@ -37,7 +37,9 @@
                         return '\'' + elem + '\'';
                     });
                 plus.webview.getLaunchWebview().evalJS('eatingObj.reset([' + arr.join(',') + ']);$("#modal").click();');
-                MyApp.back('notReg');
+                setTimeout(function () {
+                    MyApp.back('notReg');
+                }, 200);
             })
             // 编辑
             .on('click', '.edit', function() {
